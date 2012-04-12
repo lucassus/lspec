@@ -1,5 +1,7 @@
-def describe(description, &block)
-  ExampleGroup.new(block).evaluate!
+module Kernel
+  def describe(description, &block)
+    ExampleGroup.new(block).evaluate!
+  end
 end
 
 class ExampleGroup

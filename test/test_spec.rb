@@ -11,7 +11,7 @@ class TestDescribe < Test::Unit::TestCase
 
   def test_that_it_can_fail
     assert_raise(IndexError) do
-      describe 'some failing thing' do
+      describe 'Some failing thing' do
         it 'fails' do
           raise IndexError
         end
@@ -21,7 +21,7 @@ class TestDescribe < Test::Unit::TestCase
 
   def test_that_describe_blocks_can_be_nested
     assert_raise(IndexError) do
-      describe 'some thing' do
+      describe 'Some thing' do
         describe 'other thing' do
           it 'fails' do
             raise IndexError
@@ -41,6 +41,24 @@ class TestBefore < Test::Unit::TestCase
 
       it 'sets an instance variable' do
         @something.should == 123
+      end
+    end
+  end
+
+  def test_that_before_sets_an_instance_variable_only_within_its_scope
+    describe 'Some thing' do
+      it 'not sets instance variable' do
+        @something.should == nil
+      end
+
+      describe 'nested thing' do
+        before do
+          @something = 456
+        end
+
+        it 'sets instance variable' do
+          @something.should == 456
+        end
       end
     end
   end
