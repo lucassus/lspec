@@ -1,0 +1,3 @@
+module Lspec
+  VERSION = "0.0.1"
+end
