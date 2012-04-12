@@ -64,6 +64,17 @@ class TestBefore < Test::Unit::TestCase
   end
 end
 
+class TestLet < Test::Unit::TestCase
+  def test_that_it_defines_a_helper_method
+    describe 'Something with let' do
+      let(:foo) { 'hello' }
+      it 'defines :foo helper method' do
+        foo.should == 'hello'
+      end
+    end
+  end
+end
+
 class TestAssertions < Test::Unit::TestCase
   def test_it_can_pass
     2.should == 2

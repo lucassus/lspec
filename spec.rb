@@ -20,6 +20,13 @@ class ExampleGroup
   def before(&block)
     instance_eval(&block)
   end
+
+  def let(name, &block)
+    eigenclass = (class << self; self; end)
+    eigenclass.send :define_method, name do
+      block.call
+    end
+  end
 end
 
 class Object
