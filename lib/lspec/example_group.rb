@@ -2,8 +2,10 @@ module LSpec
 
   class ExampleGroup
     attr_reader :block
+    attr_reader :desc_or_class
 
-    def initialize(block)
+    def initialize(desc_or_class, block)
+      @desc_or_class = desc_or_class
       @block = block
     end
 
@@ -11,7 +13,15 @@ module LSpec
       instance_eval(&block)
     end
 
-    def it(description, &block)
+    def subject
+      @subject ||= begin
+        if desc_or_class.is_a?(Class)
+          desc_or_class.new
+        end
+      end
+    end
+
+    def it(desc, &block)
       block.call
     end
 
