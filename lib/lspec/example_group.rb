@@ -13,7 +13,7 @@ module LSpec
       instance_eval(&block)
     end
 
-    def subject()
+    def subject
       @subject ||= begin
         if block_given?
           yield
@@ -33,8 +33,8 @@ module LSpec
 
     def let(name, &block)
       # Define helper :let method on the objec's singleton (eigen) class
-      eigenclass = (class << self; self; end)
-      eigenclass.send :define_method, name do
+      singleton_class = (class << self; self; end)
+      singleton_class.send :define_method, name do
         @let_memoized_values ||= {}
         @let_memoized_values[name] ||= block.call
       end
