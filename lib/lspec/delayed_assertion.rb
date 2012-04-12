@@ -7,6 +7,10 @@ module LSpec
       @subject = subject
     end
 
+    def check_against(matcher)
+      matcher.matches?(subject)
+    end
+
     def ==(other)
       raise AssertionError unless subject == other
     end

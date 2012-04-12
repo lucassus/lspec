@@ -6,4 +6,5 @@ module LSpec
   autoload :DelayedAssertion, "lspec/delayed_assertion"
   autoload :ExampleGroup, "lspec/example_group"
   autoload :Example, "lspec/example"
+  autoload :Matchers, "lspec/matchers"
 end

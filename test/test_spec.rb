@@ -128,13 +128,27 @@ class TestSubject < Test::Unit::TestCase
 end
 
 class TestAssertions < Test::Unit::TestCase
-  def test_it_can_pass
+  def test_equal_assertion_can_pass
     2.should == 2
   end
 
-  def test_it_can_fail
+  def test_equal_assertion_can_fail
     assert_raise(LSpec::AssertionError) do
       1.should == 2
+    end
+  end
+end
+
+class TestMatchers < Test::Unit::TestCase
+  include LSpec::Matchers
+
+  def test_eq_assertion_can_pass
+    2.should eq(2)
+  end
+
+  def test_eq_assertion_can_fail
+    assert_raise(LSpec::AssertionError) do
+      1.should eq(2)
     end
   end
 end
