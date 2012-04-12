@@ -138,4 +138,3 @@ class TestAssertions < Test::Unit::TestCase
     end
   end
 end
-
