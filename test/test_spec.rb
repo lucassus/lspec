@@ -20,6 +20,20 @@ class TestDescribe < Test::Unit::TestCase
   end
 end
 
+class TestBefore < Test::Unit::TestCase
+  def test_that_before_sets_an_instance_variable
+    describe 'Before block' do
+      before do
+        @something = 123
+      end
+
+      it 'sets an instance variable' do
+        @something.should == 123
+      end
+    end
+  end
+end
+
 class TestAssertions < Test::Unit::TestCase
   def test_it_can_pass
     2.should == 2

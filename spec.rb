@@ -14,6 +14,10 @@ class ExampleGroup
   def it(description, &block)
     block.call
   end
+
+  def before(&block)
+    instance_eval(&block)
+  end
 end
 
 class Object
