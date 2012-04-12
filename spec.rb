@@ -5,12 +5,14 @@ module Kernel
 end
 
 class ExampleGroup
+  attr_reader :block
+
   def initialize(block)
     @block = block
   end
 
   def evaluate!
-    instance_eval(&@block)
+    instance_eval(&block)
   end
 
   def it(description, &block)
@@ -22,6 +24,7 @@ class ExampleGroup
   end
 
   def let(name, &block)
+    # Define helper :let method on the objec's singleton (eigen) class
     eigenclass = (class << self; self; end)
     eigenclass.send :define_method, name do
       @let_memoized_values ||= {}
@@ -39,12 +42,14 @@ end
 class AssertionError < Exception; end
 
 class DelayedAssertion
+  attr_reader :subject
+
   def initialize(subject)
     @subject = subject
   end
 
   def ==(other)
-    raise AssertionError unless @subject == other
+    raise AssertionError unless subject == other
   end
 end
 
