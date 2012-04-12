@@ -3,7 +3,10 @@ require 'spec'
 
 class TestDescribe < Test::Unit::TestCase
   def test_that_it_can_pass
-    describe('some thing') {}
+    describe('some thing') do
+      it 'should do something' do
+      end
+    end
   end
 
   def test_that_it_can_fail

@@ -2,6 +2,6 @@ def describe(description, &block)
   block.call
 end
 
-def it(description)
-  raise IndexError
+def it(description, &block)
+  block.call
 end
