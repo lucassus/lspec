@@ -1,5 +1,6 @@
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'test/unit'
-require 'spec'
+require 'lspec'
 
 class TestDescribe < Test::Unit::TestCase
   def test_that_it_can_pass
@@ -97,7 +98,7 @@ class TestAssertions < Test::Unit::TestCase
   end
 
   def test_it_can_fail
-    assert_raise(AssertionError) do
+    assert_raise(LSpec::AssertionError) do
       1.should == 2
     end
   end
