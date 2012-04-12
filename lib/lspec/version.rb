@@ -1,3 +1,3 @@
-module LSspec
+module LSpec
   VERSION = "0.0.1"
 end
