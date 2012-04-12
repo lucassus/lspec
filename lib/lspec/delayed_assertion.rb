@@ -10,6 +10,10 @@ module LSpec
     def ==(other)
       raise AssertionError unless subject == other
     end
+
+    def !=(other)
+      raise AssertionError unless subject != other
+    end
   end
 
 end

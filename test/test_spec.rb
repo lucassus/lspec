@@ -137,4 +137,14 @@ class TestAssertions < Test::Unit::TestCase
       1.should == 2
     end
   end
+
+  def test_not_equal_assertion
+    2.should != 1
+  end
+
+  def test_that_not_equal_assertion_raises_an_exception_when_values_are_equal
+    assert_raise(LSpec::AssertionError) do
+      1.should != 1
+    end
+  end
 end
