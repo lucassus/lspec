@@ -4,7 +4,7 @@ require "lspec/version"
 
 Gem::Specification.new do |s|
   s.name        = "lspec"
-  s.version     = Lspec::VERSION
+  s.version     = LSpec::VERSION
   s.authors     = ["Łukasz Bandzarewicz"]
   s.email       = ["lucassus@gmail.com"]
   s.homepage    = ""
