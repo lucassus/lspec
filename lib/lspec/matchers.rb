@@ -8,17 +8,23 @@ module LSpec
       def initialize(expected)
         @expected = expected
       end
+
+      private
+
+      def check!(passes)
+        raise AssertionError unless passes
+      end
     end
 
     class EqualMatcher < Base
       def matches?(actual)
-        raise AssertionError unless actual == expected
+        check!(actual == expected)
       end
     end
 
     class Include < Base
       def matches?(actual)
-        raise AssertionError unless actual.include?(expected)
+        check!(actual.include?(expected))
       end
     end
 
