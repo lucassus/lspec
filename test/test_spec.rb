@@ -115,6 +115,16 @@ class TestSubject < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_it_could_set_explicit_subject
+    describe Array do
+      subject { [1, 2,  3] }
+
+      it 'sets an explicit subject' do
+        subject.should == [1, 2, 3]
+      end
+    end
+  end
 end
 
 class TestAssertions < Test::Unit::TestCase

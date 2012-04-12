@@ -13,9 +13,11 @@ module LSpec
       instance_eval(&block)
     end
 
-    def subject
+    def subject()
       @subject ||= begin
-        if desc_or_class.is_a?(Class)
+        if block_given?
+          yield
+        elsif desc_or_class.is_a?(Class)
           desc_or_class.new
         end
       end
