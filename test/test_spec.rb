@@ -20,3 +20,9 @@ class TestDescribe < Test::Unit::TestCase
   end
 end
 
+class TestAssertions < Test::Unit::TestCase
+  def test_it_can_pass
+    2.should == 2
+  end
+end
+
