@@ -2,25 +2,21 @@ module LSpec
 
   module Matchers
 
-    class EqualMatcher
+    class Base
       attr_reader :expected
 
       def initialize(expected)
         @expected = expected
       end
+    end
 
+    class EqualMatcher < Base
       def matches?(actual)
         raise AssertionError unless actual == expected
       end
     end
 
-    class Include
-      attr_reader :expected
-
-      def initialize(expected)
-        @expected = expected
-      end
-
+    class Include < Base
       def matches?(actual)
         raise AssertionError unless actual.include?(expected)
       end
