@@ -24,7 +24,7 @@ module LSpec
     end
 
     def it(desc, &block)
-      block.call
+      Example.new(desc, block).evaluate!
     end
 
     def before(&block)
