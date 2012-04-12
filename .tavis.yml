@@ -1,0 +1,7 @@
+script: "ruby test/test_spec.rb"
+rvm:
+  - 1.8.7
+  - 1.9.2
+  - 1.9.3
+  - jruby
+  - rbx-18mode
