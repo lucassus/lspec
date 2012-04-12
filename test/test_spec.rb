@@ -73,6 +73,22 @@ class TestLet < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_let_helper_momizes_the_value
+    samples = [1, 2, 3]
+
+    describe 'Something with let' do
+      let(:bar) { samples.pop }
+
+      it 'returns 3' do
+        bar.should == 3
+      end
+
+      it 'returns the same value' do
+        bar.should == 3
+      end
+    end
+  end
 end
 
 class TestAssertions < Test::Unit::TestCase

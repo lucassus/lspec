@@ -24,7 +24,8 @@ class ExampleGroup
   def let(name, &block)
     eigenclass = (class << self; self; end)
     eigenclass.send :define_method, name do
-      block.call
+      @let_memoized_values ||= {}
+      @let_memoized_values[name] ||= block.call
     end
   end
 end
