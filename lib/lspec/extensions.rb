@@ -5,8 +5,8 @@ module Kernel
 end
 
 class Object
-  def should(mather = nil)
+  def should(matcher = nil)
     assertion = LSpec::DelayedAssertion.new(self)
-    mather.nil? ? assertion : assertion.check_against(mather)
+    matcher.nil? ? assertion : assertion.check_against(matcher)
   end
 end
