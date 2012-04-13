@@ -11,20 +11,20 @@ module LSpec
 
       private
 
-      def check!(passes)
-        raise AssertionError unless passes
+      def raise_assertion_error_unless(condition)
+        raise AssertionError unless condition
       end
     end
 
     class EqualMatcher < Base
       def matches?(actual)
-        check!(actual == expected)
+        raise_assertion_error_unless(actual == expected)
       end
     end
 
     class Include < Base
       def matches?(actual)
-        check!(actual.include?(expected))
+        raise_assertion_error_unless(actual.include?(expected))
       end
     end
 
