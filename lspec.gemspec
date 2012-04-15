@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 $: << File.expand_path("../lib", __FILE__)
-$: << File.dirname(__FILE__)
 
 require "lspec/version"
 

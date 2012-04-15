@@ -1,3 +1,4 @@
+$: << File.expand_path('../..', __FILE__)
 require 'test/helper'
 
 require 'test/test_assertions'
