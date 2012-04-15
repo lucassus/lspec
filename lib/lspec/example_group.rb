@@ -19,12 +19,16 @@ module LSpec
     end
 
     def subject
-      @subject ||= begin
-        if block_given?
-          yield
-        elsif desc_or_class.is_a?(Class)
+      if block_given?
+        # Evaluate the new subject
+        @subject = yield
+      elsif desc_or_class.is_a?(Class)
+        # Instantiate the explicit subject
+        @subject ||= begin
           desc_or_class.new
         end
+      else
+        @subject
       end
     end
 
