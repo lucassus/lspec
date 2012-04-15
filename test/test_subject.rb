@@ -32,4 +32,16 @@ class TestSubject < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_it_should_be_accessible_in_the_nested_scope
+    describe Array do
+      subject { [1, 2,  3] }
+
+      describe '#size' do
+        it 'returns correct array size' do
+          subject.size.should == 3
+        end
+      end
+    end
+  end
 end

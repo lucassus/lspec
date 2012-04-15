@@ -1,6 +1,6 @@
 module Kernel
   def describe(desc_or_class, &block)
-    LSpec::ExampleGroup.new(desc_or_class, block).evaluate!
+    LSpec::ExampleGroup.new(desc_or_class, nil, block).evaluate!
   end
 end
 

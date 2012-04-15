@@ -1,12 +1,17 @@
 module LSpec
 
   class ExampleGroup
-    attr_reader :block
     attr_reader :desc_or_class
+    attr_reader :block
 
-    def initialize(desc_or_class, block)
+    def initialize(desc_or_class, parent_subject, block)
       @desc_or_class = desc_or_class
+      @subject = parent_subject
       @block = block
+    end
+
+    def describe(desc_or_class, &block)
+      LSpec::ExampleGroup.new(desc_or_class, subject, block).evaluate!
     end
 
     def evaluate!
@@ -32,7 +37,7 @@ module LSpec
     end
 
     def let(name, &block)
-      # Define helper :let method on the objec's singleton (eigen) class
+      # Define helper :let method on the object's singleton (eigen) class
       singleton_class = (class << self; self; end)
       singleton_class.send :define_method, name do
         @let_memoized_values ||= {}
