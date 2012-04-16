@@ -4,6 +4,7 @@ class TestLet < Test::Unit::TestCase
   def test_that_it_defines_a_helper_method
     describe 'Something with let' do
       let(:foo) { 'hello' }
+
       it 'defines :foo helper method' do
         foo.should == 'hello'
       end
@@ -60,6 +61,31 @@ class TestLet < Test::Unit::TestCase
             bar.should == 'foo'
           end
         end
+      end
+    end
+  end
+
+  def test_that_it_can_be_used_in_other_let
+    describe 'A scope' do
+      let(:bar) { 'bar' }
+      let(:foobar) { "foo#{bar}" }
+      subject { foobar }
+
+      it 'should be equal foobar' do
+        subject.should == 'foobar'
+      end
+    end
+  end
+
+  def test_that_it_can_be_used_along_with_before
+    describe 'A scope' do
+      let(:foo) { 'bar' }
+      before do
+        @bar = foo
+      end
+
+      it 'should equal bar' do
+        @bar.should == 'bar'
       end
     end
   end
