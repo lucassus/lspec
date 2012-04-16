@@ -25,4 +25,22 @@ class TestLet < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_it_should_be_accessible_in_the_nested_scope
+    describe 'Something with let' do
+      let(:bar) { 'bar' }
+
+      describe 'nested scope' do
+        it 'should be accessible here' do
+          bar.should == 'bar'
+        end
+
+        describe 'even more nested' do
+          it 'should still be equal the same value' do
+            bar.should == 'bar'
+          end
+        end
+      end
+    end
+  end
 end

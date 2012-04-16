@@ -2,10 +2,12 @@ module LSpec
 
   class ExampleGroup
     attr_reader :desc_or_class
+    attr_reader :parent
     attr_reader :block
 
     def initialize(desc_or_class, parent, block)
       @desc_or_class = desc_or_class
+      @parent = parent
       @subject = parent.subject unless parent.nil?
       @block = block
     end
@@ -48,9 +50,13 @@ module LSpec
       # Define helper :let method on the object's singleton (eigen) class
       singleton_class = (class << self; self; end)
       singleton_class.send :define_method, name do
-        @let_memoized_values ||= {}
-        @let_memoized_values[name] ||= block.call
+        @let_memoized_let_values ||= {}
+        @let_memoized_let_values[name] ||= block.call
       end
+    end
+
+    def method_missing(name)
+      parent.send(name) unless parent.nil?
     end
   end
 end

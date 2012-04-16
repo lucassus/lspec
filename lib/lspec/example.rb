@@ -10,7 +10,7 @@ module LSpec
     end
 
     def evaluate!
-      @block.call
+      block.call
     end
   end
 
