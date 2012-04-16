@@ -43,4 +43,24 @@ class TestLet < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_it_can_be_overridden_in_the_nested_scope
+    describe 'Something with let' do
+      let(:bar) { 'bar' }
+
+      describe 'nested scope' do
+        it 'should be accessible here' do
+          bar.should == 'bar'
+        end
+
+        describe 'even more nested' do
+          let(:bar) { 'foo' }
+
+          it 'should be overridden' do
+            bar.should == 'foo'
+          end
+        end
+      end
+    end
+  end
 end
