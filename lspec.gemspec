@@ -22,4 +22,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'test-unit'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'guard-shell'
+
+  if RUBY_VERSION > '1.9'
+    s.add_development_dependency 'debugger'
+  end
 end
