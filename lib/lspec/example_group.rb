@@ -4,14 +4,14 @@ module LSpec
     attr_reader :desc_or_class
     attr_reader :block
 
-    def initialize(desc_or_class, parent_subject, block)
+    def initialize(desc_or_class, parent, block)
       @desc_or_class = desc_or_class
-      @subject = parent_subject
+      @subject = parent.subject unless parent.nil?
       @block = block
     end
 
     def describe(desc_or_class, &block)
-      LSpec::ExampleGroup.new(desc_or_class, subject, block).evaluate!
+      LSpec::ExampleGroup.new(desc_or_class, self, block).evaluate!
     end
 
     def evaluate!
