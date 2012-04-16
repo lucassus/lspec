@@ -15,6 +15,20 @@ class TestSubject < Test::Unit::TestCase
     end
   end
 
+  def test_that_implicit_subject_can_be_set_only_once
+    describe Array do
+      it 'should be an empty array' do
+        subject.should == []
+      end
+
+      describe String do
+        it 'still should be an empty array' do
+          subject.should == []
+        end
+      end
+    end
+  end
+
   def test_that_it_instantiate_described_class_only_once
     describe Array do
       it 'instantiates described class only once' do
