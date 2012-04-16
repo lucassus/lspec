@@ -5,6 +5,6 @@ require 'lspec'
 
 begin
   require 'debugger'
-rescue
-  puts 'debugger in not available'
+rescue LoadError
+  STDERR.puts 'debugger in not available for ruby < 1.9 and jruby'
 end
