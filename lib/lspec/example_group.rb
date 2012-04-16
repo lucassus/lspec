@@ -22,10 +22,14 @@ module LSpec
       if block_given?
         # Evaluate the new subject
         @subject = yield
-      elsif desc_or_class.is_a?(Class)
+      elsif desc_or_class.is_a?(Module)
         # Instantiate the explicit subject
         @subject ||= begin
-          desc_or_class.new
+          desc_or_class.is_a?(Class) ?
+              # Try instantiate the class
+              desc_or_class.new :
+              # ..or just return a module
+              desc_or_class
         end
       else
         @subject

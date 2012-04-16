@@ -15,6 +15,14 @@ class TestSubject < Test::Unit::TestCase
     end
   end
 
+  def test_that_it_will_not_try_to_intantiate_a_module
+    describe Kernel do
+      it 'should be Kernel' do
+        subject.should == Kernel
+      end
+    end
+  end
+
   def test_that_implicit_subject_can_be_set_only_once
     describe Array do
       it 'should be an empty array' do
