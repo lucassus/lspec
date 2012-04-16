@@ -12,7 +12,7 @@ module LSpec
     end
 
     def ==(other)
-      raise AssertionError unless subject == other
+      raise AssertionError.new("Expected #{subject.inspect} to be equal to #{other.inspect}") unless subject == other
     end
   end
 
