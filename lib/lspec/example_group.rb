@@ -48,6 +48,8 @@ module LSpec
       Example.new(desc, block).evaluate!
     end
 
+    alias :specify :it
+
     def before(&block)
       instance_eval(&block)
     end

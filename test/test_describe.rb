@@ -41,4 +41,16 @@ class TestDescribe < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_it_should_have_an_alias
+    assert_raise(IndexError) do
+      describe 'Some thing' do
+        context 'other thing' do
+          specify 'this should have fail' do
+            raise IndexError
+          end
+        end
+      end
+    end
+  end
 end
