@@ -59,6 +59,14 @@ module LSpec
       end
     end
 
+    def described_class
+      if desc_or_class.is_a?(Class)
+        desc_or_class
+      else
+        parent.described_class unless parent.nil?
+      end
+    end
+
     def method_missing(name)
       parent.send(name) unless parent.nil?
     end
