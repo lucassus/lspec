@@ -89,4 +89,16 @@ class TestLet < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_undefined_method_error_will_be_raised
+    assert_raise(NoMemoryError) do
+      describe 'Scope' do
+        describe 'which is nested' do
+          it 'should raise an error' do
+            undefined_foo.should == 'nothing to check'
+          end
+        end
+      end
+    end
+  end
 end
