@@ -23,6 +23,7 @@ module LSpec
 
     def evaluate!
       instance_eval(&block)
+      self
     end
 
     def subject
@@ -75,6 +76,10 @@ module LSpec
       ancestors = [self]
       ancestors += self.parent.ancestors if self.parent
       ancestors
+    end
+
+    def full_description
+      ancestors.reverse.map(&:desc_or_class).join(' ')
     end
 
     def method_missing(name)
