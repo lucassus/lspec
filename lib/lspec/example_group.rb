@@ -67,7 +67,7 @@ module LSpec
       if desc_or_class.is_a?(Class)
         desc_or_class
       else
-        parent.described_class unless parent.nil?
+        parent.described_class if parent.present?
       end
     end
 
@@ -79,8 +79,9 @@ module LSpec
 
     def method_missing(name)
       # Check whether given method is defined somewhere in the parent scope
-      if ancestors.any? { |ancestor| ancestor.respond_to?(name) }
-        parent.send(name) unless parent.nil?
+      receiver = ancestors.find { |ancestor| ancestor.respond_to?(name) }
+      if receiver.present?
+        receiver.send(name)
       else
         # .. otherwise raise an error
         raise NoMemoryError, "undefined method `#{name}` for #{self.inspect}"

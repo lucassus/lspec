@@ -7,6 +7,12 @@ end
 class Object
   def should(matcher = nil)
     assertion = LSpec::DelayedAssertion.new(self)
-    matcher.nil? ? assertion : assertion.check_against(matcher)
+    matcher.present? ? assertion.check_against(matcher) : assertion
+  end
+
+  unless respond_to?(:present?)
+    define_method :present? do
+      self != nil
+    end
   end
 end
