@@ -4,11 +4,14 @@ module LSpec
     attr_reader :desc_or_class
     attr_reader :parent
     attr_reader :block
+    attr_reader :parent
 
     def initialize(desc_or_class, parent, block)
       @desc_or_class = desc_or_class
+
+      # Inherit subject from the parent ExampleGroup
       @parent = parent
-      @subject = parent.subject unless parent.nil?
+
       @block = block
     end
 
@@ -34,7 +37,8 @@ module LSpec
               desc_or_class
         end
       else
-        @subject
+        # If the current scope subject is not set, try to return subject from the parent scope
+        @subject || parent.subject
       end
     end
 
