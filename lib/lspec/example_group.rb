@@ -19,6 +19,8 @@ module LSpec
       LSpec::ExampleGroup.new(desc_or_class, self, block).evaluate!
     end
 
+    alias :context :describe
+
     def evaluate!
       instance_eval(&block)
     end

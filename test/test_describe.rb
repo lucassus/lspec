@@ -29,4 +29,16 @@ class TestDescribe < Test::Unit::TestCase
       end
     end
   end
+
+  def test_that_subject_should_have_an_alias
+    assert_raise(IndexError) do
+      describe 'Some thing' do
+        context 'other thing' do
+          it 'should fail when an alias is defined' do
+            raise IndexError
+          end
+        end
+      end
+    end
+  end
 end
